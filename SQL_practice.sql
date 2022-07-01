@@ -1,16 +1,16 @@
 --Here I query the top 25 schools with .edu domains--
-SELECT * 
- FROM users
- WHERE email_domain LIKE '%edu%'
- LIMIT 25;
+SELECT email_domain AS top_25_school, COUNT(*) AS enrolled_numbers
+FROM users
+WHERE email_domain LIKE "%.edu"
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 25;
 
 
 -- Here I query how many learners with .edu domains are located in New York--
- SELECT COUNT (*)
- FROM users
- WHERE email_domain LIKE '%edu%'
- AND city = 'New York';
-
+ SELECT COUNT(*) AS new_york_learners
+FROM users
+WHERE email_domain LIKE "%.edu" AND city = "New York";
 
  --Here I query how many mobile_app user are not null--
  SELECT *
