@@ -42,22 +42,22 @@ SELECT *
    LIMIT 50;
 
 --What courses are the New Yorkers students taking?--
---   SELECT *
--- FROM users
--- LEFT JOIN progress
---    ON users.user_id = progress.user_id
--- WHERE city = 'New York'
---   LIMIT 10;
+   SELECT *
+ FROM users
+ LEFT JOIN progress
+    ON users.user_id = progress.user_id
+ WHERE city = 'New York'
+  LIMIT 10;
 
  
 
 -- --What courses are the Chicago students taking?--
---  SELECT *
--- FROM users
--- LEFT JOIN progress
---    ON users.user_id = progress.user_id
--- WHERE city = 'Chicago'
---   LIMIT 10;
+  SELECT *
+ FROM users
+ LEFT JOIN progress
+   ON users.user_id = progress.user_id
+ WHERE city = 'Chicago'
+  LIMIT 10;
 
 
 
