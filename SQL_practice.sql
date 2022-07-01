@@ -31,13 +31,31 @@ WHERE mobile_app IS NOT NULL;
        LIMIT 20;
 
 -- Here I find our if  different schools .edu domains prefer different courses?--
- SELECT u_id.email_domain, p_id.learn_cpp, p_id.learn_sql, p_id.learn_html, p_id.learn_javascript, p_id.learn_java
- FROM users u_id
- LEFT JOIN progress p_id
- ON u_id.user_id = p_id.user_id
- GROUP BY 1
- ORDER BY 1
-   LIMIT 50;
+ SELECT users.email_domain,
+  COUNT(CASE
+        WHEN progress.learn_cpp = 'completed'
+          OR progress.learn_cpp = 'started' THEN '1'
+        END) AS 'cpp',
+  COUNT(CASE
+        WHEN progress.learn_sql = 'completed'
+          OR progress.learn_sql = 'started' THEN '1'
+        END) AS 'sql',
+  COUNT(CASE
+        WHEN progress.learn_html = 'completed'
+          OR progress.learn_html = 'started' THEN '1'
+        END) AS 'html',
+  COUNT(CASE
+        WHEN progress.learn_javascript = 'completed'
+          OR progress.learn_javascript = 'started' THEN '1'
+        END) AS 'js',
+  COUNT(CASE
+        WHEN progress.learn_java = 'completed'
+          OR progress.learn_java = 'started' THEN '1'
+        END) AS 'java'
+FROM users
+LEFT JOIN progress
+  ON users.user_id = progress.user_id
+GROUP BY 1;
 
 --What courses are the New Yorkers students taking?--
    SELECT *
