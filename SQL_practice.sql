@@ -13,11 +13,9 @@ FROM users
 WHERE email_domain LIKE "%.edu" AND city = "New York";
 
  --Here I query how many mobile_app user are not null--
- SELECT *
- FROM users
- WHERE mobile_app IS NOT NULL
- LIMIT 200;
-
+ SELECT COUNT(*) AS mobile_app_learners
+FROM users 
+WHERE mobile_app IS NOT NULL;
 -- Here I used the strftime() to query for the signup counts for each hour--
  SELECT sign_up_at,
     strftime('%H', sign_up_at)
