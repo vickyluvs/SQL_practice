@@ -39,3 +39,5 @@
    city cpp sql html js java
    New York 16 25 14 29 8
 6. What courses are the Chicago students taking?
+   city cpp sql html js java
+   Chicago 37 42 29 46 16

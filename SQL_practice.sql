@@ -68,12 +68,31 @@ GROUP BY 1;
  
 
 -- --What courses are the Chicago students taking?--
-  SELECT *
- FROM users
- LEFT JOIN progress
-   ON users.user_id = progress.user_id
- WHERE city = 'Chicago'
-  LIMIT 10;
-
+ SELECT users.city,
+  COUNT(CASE
+        WHEN progress.learn_cpp = 'completed'
+          OR progress.learn_cpp = 'started' THEN '1'
+        END) AS 'cpp',
+  COUNT(CASE
+        WHEN progress.learn_sql = 'completed'
+          OR progress.learn_sql = 'started' THEN '1'
+        END) AS 'sql',
+  COUNT(CASE
+        WHEN progress.learn_html = 'completed'
+          OR progress.learn_html = 'started' THEN '1'
+        END) AS 'html',
+  COUNT(CASE
+        WHEN progress.learn_javascript = 'completed'
+          OR progress.learn_javascript = 'started' THEN '1'
+        END) AS 'js',
+  COUNT(CASE
+        WHEN progress.learn_java = 'completed'
+          OR progress.learn_java = 'started' THEN '1'
+        END) AS 'java'
+FROM users
+LEFT JOIN progress
+  ON users.user_id = progress.user_id
+GROUP BY 1
+HAVING users.city = 'Chicago';
 
 
